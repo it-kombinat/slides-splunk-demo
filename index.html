@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Golab</title>
+		<title>>Splunk Demo - Ansible Play to install Splunk as Container</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/solarized.css">
@@ -57,24 +57,41 @@
 						<h1 style="font-size: 800%"> Badguy</h1>
 					</script>
 				</section>
-				<section data-markdown>
+				<section>
                                     <h1>Splunk Deployment on EC2 with Ansible</h1>
                                     <img height="40%" width="40%" src="images/spl-deploy.png" style="border: 0; box-shadow: none"/>
 				</section>
-				<section data-markdown>
-					<script type="text/template">
-						## Sample Jenkinsfile with Global Library
-						```groovy
-						```
-					</script>
+                                <section data-markdown>
+                                        <script type="text/template">
+                                        ## Splunk Apps for Ansible and Docker
+                                        - "Apps" : Pre Installed in the Docker Image “stackware/spl:version”
+                                        - Docker-Collector installed on all Docker Host
+                                           - Forwarding all Metrics and Logs via Splunk HTTP Event Collector (HEC)
+                                           - Rollout with Ansible Play
+                                         - HTTP Event Collector (HEC)
+                                           - Token specified as Ansible Variable (hec_token)
+                                           - Running on Port 8088
+                                         - Syslog as Data Input
+                                           - Pre Enabled in the Docker Image
+                                           - Running on TCP Port 514
+                                           - Forwarding Syslog Message from Sys-Gen-Container 
+                                           - or Ansible Role - ansible-role-rsyslog
+                                        </script>
 				</section>
+                                <section data-markdown>
+                                         <script type="text/template">
+                                         ## Badguy - Attack simulation
+                                         - Attack simulation with THC-Hydra
+                                         - SSH root user attack against Host (IP-Address)
+                                         - Docker Image with all Dependencies
+                                         </script>
+                                       </section>
 				<section data-markdown>
 					<script type="text/template">
 						## References
-						* [Jenkins Docker Plugin](https://wiki.jenkins.io/display/JENKINS/Docker+Plugin)
-						* [Jenkins SSH Slave Docker Image](https://hub.docker.com/r/jenkinsci/ssh-slave/)
-						* [Private Docker Registry with Artifactory](https://www.jfrog.com/confluence/display/RTF/Docker+Registry)
-						* [Official Jenkins Docker images](https://github.com/jenkinsci/docker)
+						* [Splunk](https://www.splunk.com)
+						* [THC-Hydra](https://tools.kali.org/password-attacks/hydra)
+						* [THC-Hydra Docker Image](https://hub.docker.com/r/stackware/badguy/)
 					</script>
 				</section>
 			</div>
