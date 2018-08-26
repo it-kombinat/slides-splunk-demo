@@ -51,7 +51,7 @@
 				</section>
 				<section>
                                     <h2>Splunk Deployment on EC2 with Ansible</h2>
-                                    <img height="60%" width="60%" src="images/spl-deploy.png" style="border: 0; box-shadow: none"/>
+                                    <img height="80%" width="80%" src="images/spl-deploy.png" style="border: 0; box-shadow: none"/>
 				</section>
                                 <section data-markdown>
                                         <script type="text/template">
@@ -60,10 +60,10 @@
                                         - Docker-Collector installed on all Docker Host
                                            - Forwarding all Metrics and Logs via Splunk HTTP Event Collector (HEC)
                                            - Rollout with Ansible Play
-                                         - HTTP Event Collector (HEC)
+                                        - HTTP Event Collector (HEC)
                                            - Token specified as Ansible Variable (hec_token)
                                            - Running on Port 8088
-                                         - Syslog as Data Input
+                                        - Syslog as Data Input
                                            - Pre Enabled in the Docker Image
                                            - Running on TCP Port 514
                                            - Forwarding Syslog Message from Sys-Gen-Container 
@@ -91,6 +91,20 @@
                                         <script type="text/template">
                                                 <h1 style="font-size: 800%"> Demo</h1>
                                                 <h2 style="font-size: 400%"> See it in Action ... </h2>
+                                        </script>
+                                       </section>
+                                <section data-markdown>
+                                        <script type="text/template">
+                                        ## Splunk search - failed password login
+                                        ```groovy
+                                        "password for" | rex field=_raw "(?<result>Accepted|Failed) password for (?<username>\w+) from (?<ipaddr>[0-9A-Fa-f:\.]+)"
+                                        |eval failed=if(result="Failed",1,0)
+                                        |stats sum(failed) as failed by ipaddr username host
+                                        |where failed > 0
+                                        |sort by - failed
+                                        |rename ipaddr as "Source-IP" host as "On Target Host" username as "Username" failed as "Login failed count"
+                                        |head 10
+                                        ```
                                         </script>
                                 </section>
 
