@@ -105,7 +105,7 @@
                                      </section>
                         <section data-markdown>
                                 <script type="text/template">
-                                ## Splunk search - Error(prio 6) and critical(prio 7) messages
+                                ## Splunk search - Warning and Error Events
                                 ```groovy
                                 sourcetype=syslog OR sourcetype=httpevent "Event"
                                 | eval msg_error=if(like(_raw, "%Error Event%"), 1, 0)
