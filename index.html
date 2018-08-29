@@ -72,8 +72,8 @@
                                         </script>
 
 					<section>
-					                            <h2>Splunk Sources Onboarding for this Demo</h2>
-					                            <img height="100%" width="100%" src="images/splunk-sources.png" style="border: 0; box-shadow: none"/>
+					 <h2>Splunk Sources Onboarding for this Demo</h2>
+					 <img height="100%" width="100%" src="images/splunk-sources.png" style="border: 0; box-shadow: none"/>
 				  </section>
 				</section>
                                 <section data-markdown>
@@ -103,19 +103,19 @@
                                         |head 10
                                         ```
                                         </script>
-																<section data-markdown>
-				                                <script type="text/template">
-				                                ## Splunk search - Error(prio 6) and critical(prio 7) messages
-				                                ```groovy
-																				sourcetype=syslog OR sourcetype=httpevent "Hello Splunk"
-																				| eval msg_error=if(like(_raw, "%6 Hello Splunk%"), 1, 0)
-																				| eval msg_total=if(like(_raw, "%Hello Splunk%"), 1, 0 )
-																				| eval msg_critical=if(like(_raw, "%7 Hello Splunk%"), 1, 0)
-																				| stats sum(msg_total) as "Total messages", sum(msg_error) as "Error Messages" , sum(msg_critical) as "Critical Messages"
-				                                ```
-				                                </script>
+                                     </section>
+			        <section data-markdown>
+				        <script type="text/template">
+				        ## Splunk search - Error(prio 6) and critical(prio 7) messages
+				        ```groovy
+					sourcetype=syslog OR sourcetype=httpevent "Hello Splunk"
+					| eval msg_error=if(like(_raw, "%6 Hello Splunk%"), 1, 0)
+					| eval msg_total=if(like(_raw, "%Hello Splunk%"), 1, 0 )
+					| eval msg_critical=if(like(_raw, "%7 Hello Splunk%"), 1, 0)
+					| stats sum(msg_total) as "Total messages", sum(msg_error) as "Error Messages" , sum(msg_critical) as "Critical Messages"
+				        ```
+				        </script>
                                 </section>
-
 			</div>
 		</div>
 
