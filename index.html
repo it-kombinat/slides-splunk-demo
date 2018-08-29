@@ -110,8 +110,8 @@
                                 sourcetype=syslog OR sourcetype=httpevent "Event"
                                 | eval msg_error=if(like(_raw, "%Error Event%"), 1, 0)
                                 | eval msg_total=if(like(_raw, "%Event%"), 1, 0 )
-                                | eval msg_critical=if(like(_raw, "%Warning%"), 1, 0)
-                                | stats sum(msg_total) as "Total messages", sum(msg_error) as "Error Events" , sum(msg_critical) as "Warning Events"
+                                | eval msg_warning=if(like(_raw, "%Warning%"), 1, 0)
+                                | stats sum(msg_total) as "Total messages", sum(msg_error) as "Error Events" , sum(msg_warning) as "Warning Events"
                                 ```
 </script>
 </section>
